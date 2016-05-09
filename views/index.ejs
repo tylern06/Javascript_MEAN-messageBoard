@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Message Board</title>
+		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+	</head>
+	<body>
+		<div class='container'>
+			<div class='board'>
+				<h1>Welcome to the Message Board</h1>
+				<h4>Save a new message!</h4>
+				<div class='form'>
+				<form action='/create_message' method='post'>
+					Name: <input type='text' name='name'><br>
+					Message: <textarea name='message' row='8' cols='40'></textarea><br>
+					<input type='submit' value='Create Message'>
+				</form>
+				</div>
+				<div id='messagebox'>
+					<h3>All Messages</h3>
+					<% for (var x in messages) { %>
+						<div class='messages'>
+							<p>Name: <%= messages[x].name %></p>
+							<p>Message: <%= messages[x].message %></p>
+							<% for (var j in  messages[x].comments) { %>
+								<p>Name: <%= messages[x].comments[j].name %> </p>
+								<p>Comments: <%= messages[x].comments[j].comment %> </p>
+							<% } %>
+							<h4>Leave a comment</h4>
+						<div class='form'>
+							<form action='/create_comment/<%= messages[x]._id %>' method='post'>
+								Name: <input type='text' name='name'>
+								Comment: <textarea name='comment' row='8' cols='40'></textarea>
+								<input class='comment-btn' type='submit' value='Create Comment'>
+							</form>
+						</div>
+						</div>
+						
+					<% } %>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+		
+			
+			
+
+			
+		
+		
